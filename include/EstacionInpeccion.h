@@ -17,11 +17,7 @@ private:
     int piezasNOK;
 
 public:
-    EstacionInspeccion(
-        std::string sensor,
-        double nominal,
-        double tolerancia
-    );
+    EstacionInspeccion(std::string sensor, double nominal, double tolerancia);
 
     void encender();
     void apagar();
