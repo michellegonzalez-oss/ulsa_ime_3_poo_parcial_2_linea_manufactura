@@ -1,12 +1,11 @@
 #pragma once
 
 #include <string>
+#include "Componente.h"
 
-class EstacionInspeccion 
+class EstacionInspeccion
 {
 private:
-    std::string nombreSensor;
-
     bool encendida;
 
     double valorNominal;
@@ -17,14 +16,15 @@ private:
     int piezasNOK;
 
 public:
-    EstacionInspeccion(std::string sensor, double nominal, double tolerancia);
+
+    EstacionInspeccion(double nominal, double tolerancia);
 
     void encender();
     void apagar();
 
     void calibrar(double referencia);
 
-    bool inspeccionar(double medida);
+    bool inspeccionar(Componente& componente, double medida);
 
     void mostrarReporte() const;
 };
