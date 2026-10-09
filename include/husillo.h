@@ -18,7 +18,7 @@ public:
     int getVidaUtilMaxima() const;
     int getVidaUtilRestante() const;
 
-    // Operaciones
+    // Desgaste y mantenimiento
     bool desgastar();
     void restaurar();
 

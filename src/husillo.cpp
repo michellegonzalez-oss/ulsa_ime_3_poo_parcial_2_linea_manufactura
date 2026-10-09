@@ -38,6 +38,7 @@ bool Husillo::desgastar() {
     }
 
     --vidaUtilRestante;
+
     return true;
 }
 
