@@ -1,8 +1,7 @@
 #include "EstacionInspeccion.h"
 #include <iostream>
 
-EstacionInspeccion::EstacionInspeccion(
-    std::string sensor, double nominal, double tol)
+EstacionInspeccion::EstacionInspeccion(std::string sensor, double nominal, double tol)
 {
     nombreSensor = sensor;
     valorNominal = nominal;
@@ -43,9 +42,7 @@ bool EstacionInspeccion::inspeccionar(double medida)
 
     medida += offset;
 
-    bool aprobada =
-        medida >= (valorNominal - tolerancia) &&
-        medida <= (valorNominal + tolerancia);
+    bool aprobada = medida >= (valorNominal - tolerancia) && medida <= (valorNominal + tolerancia);
 
     if(aprobada)
     {
