@@ -1,3 +1,52 @@
+// agregado 
+// include/Maquina.h
+#ifndef MAQUINA_H
+#define MAQUINA_H
+
+#include <string>
+
+class Maquina {
+private:
+    int id;
+    std::string nombre;
+    bool encendida;
+    bool enFalla;
+    int piezasProcesadas;
+    int tiempoTrabajado;
+    int paros;
+
+protected:
+    void registrarPieza();
+    void agregarTiempo(int segundos);
+    void reportarFalla();
+    void registrarMantenimiento();
+
+public:
+    Maquina(int id, const std::string& nombre);
+
+    void encender();
+    void apagar();
+
+    bool estaEncendida() const;
+    bool estaEnFalla() const;
+    bool puedeProcesar() const;
+
+    int getId() const;
+    std::string getNombre() const;
+    int getPiezasProcesadas() const;
+    int getTiempoTrabajado() const;
+    int getParos() const;
+
+    void mostrarEstado() const;
+};
+
+#endif
+
+
+
+
+
+
 #ifndef MAQUINA_H
 #define MAQUINA_H
 
@@ -64,3 +113,6 @@ public:
 };
 
 #endif
+
+
+// agrgado de maquina . h
