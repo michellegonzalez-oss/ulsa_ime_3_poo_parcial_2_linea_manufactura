@@ -2,7 +2,8 @@
 
 #include <string>
 
-class EstacionInspeccion {
+class EstacionInspeccion 
+{
 private:
     std::string nombreSensor;
 
