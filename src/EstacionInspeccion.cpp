@@ -1,15 +1,13 @@
 #include "EstacionInspeccion.h"
 #include <iostream>
 
-EstacionInspeccion::EstacionInspeccion(std::string sensor, double nominal, double tol)
+EstacionInspeccion::EstacionInspeccion(double nominal, double tolerancia)
 {
-    nombreSensor = sensor;
-    valorNominal = nominal;
-    tolerancia = tol;
-
-    encendida = false;
+    this->valorNominal = nominal;
+    this->tolerancia = tolerancia;
 
     offset = 0.0;
+    encendida = false;
 
     piezasOK = 0;
     piezasNOK = 0;
@@ -28,45 +26,65 @@ void EstacionInspeccion::apagar()
 void EstacionInspeccion::calibrar(double referencia)
 {
     offset = valorNominal - referencia;
-
-    std::cout << "Offset de calibracion: " << offset << " mm\n";
 }
 
-bool EstacionInspeccion::inspeccionar(double medida)
+bool EstacionInspeccion::inspeccionar(
+    Componente& componente,
+    double medida)
 {
-    if(!encendida)
+    if (!encendida)
     {
-        std::cout << "ERROR: Estacion apagada.\n";
+        std::cout << "La estacion esta apagada.\n";
         return false;
     }
 
     medida += offset;
 
-    bool aprobada = medida >= (valorNominal - tolerancia) && medida <= (valorNominal + tolerancia);
+    bool aprobado =
+        medida >= (valorNominal - tolerancia) &&
+        medida <= (valorNominal + tolerancia);
 
-    if(aprobada)
+    componente.setInspeccionado(true);
+    componente.setAprobado(aprobado);
+
+    if (aprobado)
     {
         piezasOK++;
 
-        std::cout << "Pieza " << medida << " mm -> OK\n";
+        std::cout
+            << "Componente "
+            << componente.getId()
+            << " -> APROBADO\n";
     }
     else
     {
         piezasNOK++;
 
-        std::cout << "Pieza " << medida << " mm -> NOK\n";
+        std::cout
+            << "Componente "
+            << componente.getId()
+            << " -> RECHAZADO\n";
     }
 
-    return aprobada;
+    return aprobado;
 }
 
 void EstacionInspeccion::mostrarReporte() const
 {
-    std::cout << "Sensor: " << nombreSensor << "\n";
+    std::cout << "\n===== REPORTE =====\n";
 
-    std::cout << "Piezas OK: " << piezasOK << "\n";
+    std::cout
+        << "Piezas OK: "
+        << piezasOK
+        << "\n";
 
-    std::cout << "Piezas NOK: " << piezasNOK << "\n";
+    std::cout
+        << "Piezas NOK: "
+        << piezasNOK
+        << "\n";
 
-    std::cout << "Total: " << (piezasOK + piezasNOK) << "\n";
+    std::cout
+        << "Total inspeccionadas: "
+        << piezasOK + piezasNOK
+        << "\n";
 }
