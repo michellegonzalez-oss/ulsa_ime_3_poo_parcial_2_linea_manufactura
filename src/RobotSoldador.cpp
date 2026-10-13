@@ -2,8 +2,7 @@
 #include "RobotSoldador.h"
 #include <iostream>
 
-RobotSoldador::RobotSoldador(int id, const std::string& nombre, float tempInicial)
-    : Maquina(id, nombre), temperaturaActual(tempInicial), piezasSoldadas(0) {}
+RobotSoldador::RobotSoldador(int id, const std::string& nombre, float tempInicial) : Maquina(id, nombre), temperaturaActual(tempInicial), piezasSoldadas(0) {}
 
 bool RobotSoldador::soldarComponente(Componente& comp, int tiempoSeg) {
     if (!puedeProcesar()) return false;
