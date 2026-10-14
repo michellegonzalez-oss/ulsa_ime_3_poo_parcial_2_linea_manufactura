@@ -9,8 +9,16 @@
 //   ./planta
 
 #include <iostream>
+#include "BandaTransportadora.h"
 #include "Componente.h"
 #include "EstacionInspeccion.h"
+#include "Fresadora.h"
+#include "husillo.h"
+#include "Maquina.h"
+#include "Motor.h"
+#include "Planta.h"
+#include "RobotSoldador.h"
+#include "TornoCNC.h"
 
 int main() {
     // 1. Crear las máquinas y registrarlas en la planta.
