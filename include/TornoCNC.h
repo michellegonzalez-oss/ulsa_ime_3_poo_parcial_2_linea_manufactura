@@ -1,43 +1,36 @@
 #ifndef TORNOCNC_H
 #define TORNOCNC_H
 
-#include "Maquina.h"
-#include "Componente.h"
-#include "husillo.h"
+#include <string>
 
+#include "Husillo.h"
+#include "Maquina.h"
+
+// Torno CNC: cilindra la pieza.
+// - HerenSia: TornoCNC ES una Maquina.
+// - Composicion: TornoCNC TIENE un componente Husillo (lo crea y lo destruye ella).
 class TornoCNC : public Maquina {
 private:
-    double velocidadCorte;
-    double diametroMaximo;
-    int tiempoPorPieza;
-
-    Husillo husillo;
+int segundosPorPieza; // tiempo por pieza (> 0)
+int rpm; // velocidad del husillo (> 0)
+Husillo husillo;
 
 public:
-    TornoCNC(
-        int id,
-        const std::string& nombre,
-        double velocidadCorte,
-        double diametroMaximo,
-        int vidaUtilHusillo
-    );
+TornoCNC(int id, const std::string& nombre, int segundos, int valor2, int vidaHusillo);
 
-    // Operación propia del torno
-    bool cilindrar(
-        const Componente& pieza,
-        double diametro
-    );
+// Validan antes de asignar; si el valor no es valido, no lo cambian.
+void setSegundosPorPieza(int segundos);
+void setRpm(int valor);
 
-    // Mantenimiento
-    void realizarMantenimiento();
+// Procesa UNA pieza. Devuelve false si la rechaza (apagada o en falla).
+// Si esta pieza agota el componente, la maquina entra en falla.
+bool procesarPieza();
 
-    // Mostrar información de la máquina
-    void mostrarEstado() const;
+// Restaura el componente, quita la falla y cuenta un paro.
+void darMantenimiento();
 
-    // Consultas propias del torno
-    double getVelocidadCorte() const;
-    double getDiametroMaximo() const;
-    int getVidaUtilHusillo() const;
+// Redefine el de Maquina: reutiliza la version base y agrega lo suyo.
+void mostrarEstado() const;
 };
 
 #endif
