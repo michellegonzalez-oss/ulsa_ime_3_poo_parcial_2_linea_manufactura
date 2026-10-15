@@ -1,30 +1,28 @@
-#include "SensorCalibracion.h"
+#include "Sensor.h"
 
-SensorCalibracion::SensorCalibracion(int lecturasMaximas, double precisionMm)
-    : lecturasMaximas(lecturasMaximas > 0 ? lecturasMaximas : 30),
-      lecturasRestantes(lecturasMaximas > 0 ? lecturasMaximas : 30),
-      precisionMm(precisionMm > 0.0 ? precisionMm : 0.01) {}
+#include <iostream>
 
-bool SensorCalibracion::desgastar() {
-    if (lecturasRestantes > 0) {
-        lecturasRestantes--;
+Sensor::Sensor(int vida) : vidaUtil(30), usos(0) {
+    if (vida > 0) {
+        vidaUtil = vida;
+    } else {
+        std::cout << "  [Sensor] Vida util no valida (" << vida
+                  << "). Se usan 30.\n";
     }
-    // Si llega a 0 lecturas, el sensor pierde calibración y entra en falla
-    return lecturasRestantes == 0;
 }
 
-void SensorCalibracion::recalibrar() {
-    lecturasRestantes = lecturasMaximas;
+void Sensor::medir() {
+    usos++;
 }
 
-int SensorCalibracion::getLecturasRestantes() const {
-    return lecturasRestantes;
+bool Sensor::perdioCalibracion() const {
+    return usos >= vidaUtil;
 }
 
-int SensorCalibracion::getLecturasMaximas() const {
-    return lecturasMaximas;
+void Sensor::calibrar() {
+    usos = 0;
 }
 
-double SensorCalibracion::getPrecision() const {
-    return precisionMm;
+void Sensor::mostrar() const {
+    std::cout << "    Sensor: " << usos << "/" << vidaUtil << " mediciones\n";
 }
