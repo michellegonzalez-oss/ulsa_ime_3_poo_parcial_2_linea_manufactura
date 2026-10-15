@@ -1,5 +1,4 @@
-// agregado 
-// include/Maquina.h
+
 #ifndef MAQUINA_H
 #define MAQUINA_H
 
@@ -22,25 +21,34 @@ protected:
     void registrarMantenimiento();
 
 public:
+    // Constructor
     Maquina(int id, const std::string& nombre);
 
+    // Encendido y apagado
     void encender();
     void apagar();
 
+    // Consultar el estado
     bool estaEncendida() const;
     bool estaEnFalla() const;
     bool puedeProcesar() const;
 
+    // Consultar los datos de la máquina
     int getId() const;
     std::string getNombre() const;
     int getPiezasProcesadas() const;
     int getTiempoTrabajado() const;
     int getParos() const;
 
-    void mostrarEstado() const;
+    // Mostrar información
+    virtual void mostrarEstado() const;
+
+    // Permitir el uso polimórfico de las máquinas
+    virtual ~Maquina() = default;
 };
 
 #endif
+
 
 
 
