@@ -1,28 +1,24 @@
 #ifndef HUSILLO_H
 #define HUSILLO_H
 
-#include <string>
-
+// Componente de Torno CNC: el husillo.
+//
+// Desgaste: cada uso gasta 1 de la vida util (medida en piezas).
+// Cuando se gasta toda, el componente llego a su limite y la maquina
+// que lo contiene entra en falla.
 class Husillo {
 private:
-    std::string nombre;
-    int vidaUtilMaxima;
-    int vidaUtilRestante;
+int vidaUtil; // piezas que aguanta (> 0)
+int usos; // piezas desde que es nuevo
 
 public:
-    // Constructor
-    Husillo(const std::string& nombre, int vidaUtil);
+// Si vida <= 0 se usan 10 y se avisa en pantalla.
+Husillo(int vida);
 
-    // Consultas
-    std::string getNombre() const;
-    int getVidaUtilMaxima() const;
-    int getVidaUtilRestante() const;
-
-    // Desgaste y mantenimiento
-    bool desgastar();
-    void restaurar();
-
-    bool necesitaMantenimiento() const;
+void desgastar(); // suma un uso
+bool estaDesgastado() const; // true si ya llego a su limite
+void reemplazar(); // lo deja como nuevo
+void mostrar() const;
 };
 
 #endif
