@@ -1,44 +1,66 @@
 #include "Fresadora.h"
+
 #include <iostream>
 
-Fresadora::Fresadora(int id, const std::string& nombre, int vidaHerramienta, int profundidad, int tiempoPorPieza)
-    : Maquina(id, nombre), herramienta(vidaHerramienta),
-      profundidadCorte(profundidad > 0 ? profundidad : 2),
-      tiempoPorPieza(tiempoPorPieza > 0 ? tiempoPorPieza : 45) {}
+Fresadora::Fresadora(int id, const std::string& nombre, int segundos, int valor2, int vidaHerramienta)
+    : Maquina(id, nombre),
+      segundosPorPieza(45),
+      profundidadMm(5),
+      herramienta(vidaHerramienta) {
+    setSegundosPorPieza(segundos);
+    setProfundidadMm(valor2);
+}
+
+void Fresadora::setSegundosPorPieza(int segundos) {
+    if (segundos > 0) {
+        segundosPorPieza = segundos;
+    } else {
+        std::cout << "  [" << getNombre() << "] Segundos por pieza no valido: "
+                  << segundos << "\n";
+    }
+}
+
+void Fresadora::setProfundidadMm(int valor) {
+    if (valor > 0) {
+        profundidadMm = valor;
+    } else {
+        std::cout << "  [" << getNombre() << "] Profundidad de la ranura no valida: "
+                  << valor << "\n";
+    }
+}
 
 bool Fresadora::procesarPieza() {
+    // Solo procesa si esta encendida y sin falla.
     if (!puedeProcesar()) {
-        std::cout << "[ERROR] " << getNombre() << " no puede procesar la pieza. Verifique encendido o fallas." << std::endl;
+        std::cout << "  [" << getNombre() << "] Rechaza la pieza ("
+                  << (estaEncendida() ? "en falla" : "apagada") << ")\n";
         return false;
     }
 
-    // Procesa pieza
+    // Hace su trabajo y le avisa a la base.
+    herramienta.desgastar();
     registrarPieza();
-    agregarTiempo(tiempoPorPieza);
+    agregarTiempo(segundosPorPieza);
+    std::cout << "  [" << getNombre() << "] Ranura la pieza ("
+              << segundosPorPieza << " s)\n";
 
-    // Revisa desgaste del componente
-    if (herramienta.desgastar()) {
+    // Si esta pieza agoto el componente, la maquina entra en falla.
+    if (herramienta.estaDesgastada()) {
         reportarFalla();
-        std::cout << "[ALERTA] " << getNombre() << ": La herramienta de corte se desgastó por completo. Máquina en falla." << std::endl;
+        std::cout << "  [" << getNombre() << "] FALLA: herramienta de corte desgastada\n";
     }
     return true;
 }
 
 void Fresadora::darMantenimiento() {
-    herramienta.reemplazar();
+    herramienta.afilar();
     registrarMantenimiento();
-    std::cout << "[MANTENIMIENTO] " << getNombre() << ": Herramienta reemplazada. Estado restaurado." << std::endl;
-}
-
-int Fresadora::getProfundidadCorte() const {
-    return profundidadCorte;
+    std::cout << "  [" << getNombre() << "] Mantenimiento: herramienta nueva\n";
 }
 
 void Fresadora::mostrarEstado() const {
-    // Reutiliza el método base
-    Maquina::mostrarEstado();
-    // Agrega la información propia y de su componente
-    std::cout << "  └─ [Fresadora Especifics] Profundidad: " << profundidadCorte
-              << "mm | Vida útil de herramienta: " << herramienta.getVidaUtil()
-              << "/" << herramienta.getVidaMaxima() << " piezas" << std::endl;
+    Maquina::mostrarEstado();   // reutiliza la version de la base
+    std::cout << "    Fresadora: " << profundidadMm << " mm, "
+              << segundosPorPieza << " s por pieza\n";
+    herramienta.mostrar();
 }
