@@ -3,7 +3,7 @@
 > Copia este archivo como `docs/<Clase>.md` (por ejemplo, con el nombre de tu máquina) y llena tu copia. No modifiques la plantilla.
 
 **Elaborada por:** Fernando Caleb Román Zamarripa
-**Matrícula:** [Inserta aquí tu matrícula]
+**Matrícula:**25436
 **Bloque:** 2
 
 ## 1. Propósito
@@ -19,15 +19,26 @@ El componente quue fue usado para el funcionamiento de fresadora  fue la clase h
 
 **Atributos propios de tu clase y validación de cada uno:**
 
-[Inserta aquí tu respuesta]
+-segundosPorPieza: almacena el tiempo que tarda en procesarse una pieza. Su valor debe ser mayor que cero.
 
+-profundidadMm: almacena la profundidad de la ranura en milímetros. Su valor también debe ser mayor que cero.
+
+-herramienta: es un objeto de HerramientaCorte que representa el componente encargado del corte y cuyo desgaste se controla durante el procesamiento.
+
+Los dos primeros atributos son privados y se modifican mediante métodos
 **Métodos propios (los que la clase base no tiene):**
+setSegundosPorPieza(int segundos): cambia el tiempo de procesamiento cuando el valor es mayor que cero.
 
-[Inserta aquí tu respuesta]
+setProfundidadMm(int valor): cambia la profundidad de la ranura cuando el valor es mayor que cero.
+
+procesarPieza(): verifica si la máquina puede trabajar. Si está apagada o presenta una falla, rechaza la pieza. De lo contrario, desgasta la herramienta, registra la pieza procesada y suma el tiempo de operación. Si la herramienta se desgasta por completo, reporta una falla.
+
+darMantenimiento(): restaura la herramienta mediante afilar(), registra el mantenimiento y muestra un mensaje.
+
+mostrarEstado(): redefine el método de la clase base para mostrar también la profundidad de la ranura, el tiempo por pieza y el estado de la herramienta.
 
 **Método de la base que redefines, y cómo reutilizas la versión de la base:**
-
-[Inserta aquí tu respuesta]
+El método mostrarEstado() de la clase Maquina. Dentro de su implementación llamo a Maquina::mostrarEstado(), que muestra la información general de la máquina. Después agrego los datos particulares de la fresadora y llamo a herramienta.mostrar() para mostrar la información de su componente
 
 **¿Cómo modelaste el desgaste del componente y por qué así?**
 
