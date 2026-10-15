@@ -2,7 +2,7 @@
 
 **Elaborada por:** Michelle González Barrera
 **Matrícula:** 25069
-**Bloque:** [Inserta aquí tu número de bloque]
+**Bloque:** 5
 
 ## 1. Propósito
 
