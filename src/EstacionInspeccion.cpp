@@ -1,4 +1,5 @@
 #include "EstacionInspeccion.h"
+#include "Componente.h"
 #include <iostream>
 
 EstacionInspeccion::EstacionInspeccion(double nominal, double tolerancia)
