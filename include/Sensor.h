@@ -1,20 +1,24 @@
-#ifndef SENSORCALIBRACION_H
-#define SENSORCALIBRACION_H
+#ifndef SENSOR_H
+#define SENSOR_H
 
-class SensorCalibracion {
+// Componente de Estacion de inspeccion: el sensor (calibracion).
+//
+// Desgaste: cada uso gasta 1 de la vida util (medida en mediciones).
+// Cuando se gasta toda, el componente llego a su limite y la maquina
+// que lo contiene entra en falla.
+class Sensor {
 private:
-    int lecturasRestantes; // Lecturas de precisión que le quedan al sensor
-    int lecturasMaximas;   // Capacidad total de lecturas antes de requerir recalibración
-    double precisionMm;    // Tolerancia actual en mm (ej. 0.01 mm)
+    int vidaUtil;   // mediciones que aguanta (> 0)
+    int usos;       // mediciones desde que es nuevo
 
 public:
-    SensorCalibracion(int lecturasMaximas = 30, double precisionMm = 0.01);
+    // Si vida <= 0 se usan 30 y se avisa en pantalla.
+    Sensor(int vida);
 
-    bool desgastar();
-    void recalibrar();
-    int getLecturasRestantes() const;
-    int getLecturasMaximas() const;
-    double getPrecision() const;
+    void medir();      // suma un uso
+    bool perdioCalibracion() const; // true si ya llego a su limite
+    void calibrar();     // lo deja como nuevo
+    void mostrar() const;
 };
 
 #endif
