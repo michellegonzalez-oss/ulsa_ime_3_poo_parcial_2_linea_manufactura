@@ -1,51 +1,28 @@
-#include "husillo.h"
+#include "Husillo.h"
 
-#include <stdexcept>
+#include <iostream>
 
-Husillo::Husillo(const std::string& nombre, int vidaUtil)
-    : nombre(nombre),
-      vidaUtilMaxima(vidaUtil),
-      vidaUtilRestante(vidaUtil) {
-
-    if (nombre.empty()) {
-        throw std::invalid_argument(
-            "El nombre del husillo no puede estar vacio."
-        );
-    }
-
-    if (vidaUtil <= 0) {
-        throw std::invalid_argument(
-            "La vida util debe ser mayor que cero."
-        );
-    }
+Husillo::Husillo(int vida) : vidaUtil(10), usos(0) {
+if (vida > 0) {
+vidaUtil = vida;
+} else {
+std::cout << " [Husillo] Vida util no valida (" << vida
+<< "). Se usan 10.\n";
+}
 }
 
-std::string Husillo::getNombre() const {
-    return nombre;
+void Husillo::desgastar() {
+usos++;
 }
 
-int Husillo::getVidaUtilMaxima() const {
-    return vidaUtilMaxima;
+bool Husillo::estaDesgastado() const {
+return usos >= vidaUtil;
 }
 
-int Husillo::getVidaUtilRestante() const {
-    return vidaUtilRestante;
+void Husillo::reemplazar() {
+usos = 0;
 }
 
-bool Husillo::desgastar() {
-    if (vidaUtilRestante <= 0) {
-        return false;
-    }
-
-    --vidaUtilRestante;
-
-    return true;
-}
-
-void Husillo::restaurar() {
-    vidaUtilRestante = vidaUtilMaxima;
-}
-
-bool Husillo::necesitaMantenimiento() const {
-    return vidaUtilRestante == 0;
+void Husillo::mostrar() const {
+std::cout << " Husillo: " << usos << "/" << vidaUtil << " piezas\n";
 }
