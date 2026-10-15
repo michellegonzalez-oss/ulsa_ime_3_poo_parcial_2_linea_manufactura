@@ -1,24 +1,28 @@
 #include "HerramientaCorte.h"
+
 #include <iostream>
 
-HerramientaCorte::HerramientaCorte(int vidaMaxima)
-    : vidaMaxima(vidaMaxima > 0 ? vidaMaxima : 10), vidaUtil(vidaMaxima > 0 ? vidaMaxima : 10) {}
-
-bool HerramientaCorte::desgastar() {
-    if (vidaUtil > 0) {
-        vidaUtil--;
+HerramientaCorte::HerramientaCorte(int vida) : vidaUtil(20), usos(0) {
+    if (vida > 0) {
+        vidaUtil = vida;
+    } else {
+        std::cout << "  [Herramienta de corte] Vida util no valida (" << vida
+                  << "). Se usan 20.\n";
     }
-    return vidaUtil == 0; // Retorna verdadero si alcanzó el límite de desgaste
 }
 
-void HerramientaCorte::reemplazar() {
-    vidaUtil = vidaMaxima;
+void HerramientaCorte::desgastar() {
+    usos++;
 }
 
-int HerramientaCorte::getVidaUtil() const {
-    return vidaUtil;
+bool HerramientaCorte::estaDesgastada() const {
+    return usos >= vidaUtil;
 }
 
-int HerramientaCorte::getVidaMaxima() const {
-    return vidaMaxima;
+void HerramientaCorte::afilar() {
+    usos = 0;
+}
+
+void HerramientaCorte::mostrar() const {
+    std::cout << "    Herramienta de corte: " << usos << "/" << vidaUtil << " piezas\n";
 }
