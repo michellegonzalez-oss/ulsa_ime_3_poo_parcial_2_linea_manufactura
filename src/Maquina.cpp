@@ -33,10 +33,5 @@ int Maquina::getTiempoTrabajado() const { return tiempoTrabajado; }
 int Maquina::getParos() const { return paros; }
 
 void Maquina::mostrarEstado() const {
-    std::cout << "[" << id << "] " << nombre 
-              << " | Encendida: " << (encendida ? "Sí" : "No")
-              << " | Falla: " << (enFalla ? "SÍ" : "No")
-              << " | Piezas: " << piezasProcesadas
-              << " | Tiempo: " << tiempoTrabajado << "s"
-              << " | Paros: " << paros << "\n";
+    std::cout << "[" << id << "] " << nombre << " | Encendida: " << (encendida ? "Sí" : "No") << " | Falla: " << (enFalla ? "SÍ" : "No") << " | Piezas: " << piezasProcesadas << " | Tiempo: " << tiempoTrabajado << "s" << " | Paros: " << paros << "\n";
 }
