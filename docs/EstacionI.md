@@ -1,3 +1,5 @@
+# Documentación de la clase: EstacionI
+
 **Elaborada por:** Michelle González Barrera
 **Matrícula:** 25069
 **Bloque:** [Inserta aquí tu número de bloque]
@@ -10,21 +12,21 @@ Mi máquina representa la estación de inspección, la cual realiza un análisis
 
 **¿Cuál es su componente y por qué no existe sin la máquina?**
 
-Su componente es un sensor y no puede funcionar sin la máquina porque es la que contiene toda la información de cada pieza que pasa por esta máquina (EstacionInspeccion), sin esta información no se podría hacer ninguna operación bajo los métodos que se implementan.
+Su componente es un sensor de calibración y no puede funcionar sin la máquina porque es la que contiene toda la información de cada pieza que pasa por esta máquina (EstacionI), sin esta información no se podría hacer ninguna operación bajo los métodos que se implementan.
 
 ## 2. Decisiones de diseño
 
 **Atributos propios de tu clase y validación de cada uno:**
 
-[Inserta aquí tu respuesta]
+toleranciaMicras, segundosPorPieza y sensor
 
 **Métodos propios (los que la clase base no tiene):**
 
-[Inserta aquí tu respuesta]
+procesarPieza() y darMantenimiento().
 
 **Método de la base que redefines, y cómo reutilizas la versión de la base:**
 
-[Inserta aquí tu respuesta]
+mostrarEstado
 
 **¿Cómo modelaste el desgaste del componente y por qué así?**
 
