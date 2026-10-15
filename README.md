@@ -12,14 +12,13 @@ La guía completa del proyecto está en [PROYECTO.md](PROYECTO.md). Léanla ante
 | 2 | | | | | |
 | 3 | | | | | |
 | 4 |25160 | brayan lopez| brayanlopez-ux| Robot soldador|Soldar |
-| 5 | | | | | |
-| 6 (solo equipo de seis) | | | | | |
+| 5 |25069 |Michelle González Barrera|michellegonzalez-oss |Estación de Inspección |Sensor |
 
 ## 2. Orden de la línea
 
 Escriban el orden en que una pieza recorre las estaciones.
 
-[Inserta aquí tu respuesta]
+Torno CNC, Banda Transportadora, Fresadora, Banda Transportadora, Robot Soldador, Banda Transportadora,  Estación de Inspección
 
 ## 3. Cómo compilar y ejecutar
 
