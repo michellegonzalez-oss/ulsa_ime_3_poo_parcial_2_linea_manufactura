@@ -52,19 +52,13 @@ bool EstacionInspeccion::inspeccionar(
     {
         piezasOK++;
 
-        std::cout
-            << "Componente "
-            << componente.getId()
-            << " -> APROBADO\n";
+        std::cout << "Componente " << componente.getId() << " -> APROBADO\n";
     }
     else
     {
         piezasNOK++;
 
-        std::cout
-            << "Componente "
-            << componente.getId()
-            << " -> RECHAZADO\n";
+        std::cout << "Componente " << componente.getId() << " -> RECHAZADO\n";
     }
 
     return aprobado;
@@ -74,18 +68,9 @@ void EstacionInspeccion::mostrarReporte() const
 {
     std::cout << "\n===== REPORTE =====\n";
 
-    std::cout
-        << "Piezas OK: "
-        << piezasOK
-        << "\n";
+    std::cout << "Piezas OK: " << piezasOK << "\n";
 
-    std::cout
-        << "Piezas NOK: "
-        << piezasNOK
-        << "\n";
+    std::cout << "Piezas NOK: " << piezasNOK << "\n";
 
-    std::cout
-        << "Total inspeccionadas: "
-        << piezasOK + piezasNOK
-        << "\n";
+    std::cout << "Total inspeccionadas: " << piezasOK + piezasNOK << "\n";
 }
