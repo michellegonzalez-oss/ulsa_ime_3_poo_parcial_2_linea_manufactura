@@ -1,55 +1,12 @@
-
 #include "Maquina.h"
 #include <iostream>
-#include <stdexcept>
 
 Maquina::Maquina(int id, const std::string& nombre)
-    : id(id),
-      nombre(nombre),
-      encendida(false),
-      enFalla(false),
-      piezasProcesadas(0),
-      tiempoTrabajado(0),
-      paros(0) {
-
-    // Validar los datos de la maquina
-    if (id <= 0) {
-        throw std::invalid_argument("El ID debe ser mayor que cero.");
-    }
-
-    if (nombre.empty()) {
-        throw std::invalid_argument("El nombre no puede estar vacio.");
-    }
-}
-
-void Maquina::registrarPieza() {
-    piezasProcesadas++;
-}
-
-void Maquina::agregarTiempo(int segundos) {
-    if (segundos > 0) {
-        tiempoTrabajado += segundos;
-    }
-}
-
-void Maquina::reportarFalla() {
-    enFalla = true;
-}
-
-void Maquina::registrarMantenimiento() {
-    if (enFalla) {
-        enFalla = false;
-        paros++;
-    }
-}
+    : id(id), nombre(nombre), encendida(false), enFalla(false),
+      piezasProcesadas(0), tiempoTrabajado(0), paros(0) {}
 
 void Maquina::encender() {
-    if (!enFalla) {
-        encendida = true;
-    } else {
-        std::cout << nombre
-                  << " no puede encenderse: necesita mantenimiento.\n";
-    }
+    encendida = true;
 }
 
 void Maquina::apagar() {
@@ -88,13 +45,28 @@ int Maquina::getParos() const {
     return paros;
 }
 
+void Maquina::registrarPieza() {
+    piezasProcesadas++;
+}
+
+void Maquina::agregarTiempo(int segundos) {
+    tiempoTrabajado += segundos;
+}
+
+void Maquina::reportarFalla() {
+    enFalla = true;
+}
+
+void Maquina::registrarMantenimiento() {
+    enFalla = false;
+    paros++;
+}
+
 void Maquina::mostrarEstado() const {
-    std::cout << "\n--- Estado de la maquina ---\n";
-    std::cout << "ID: " << id << '\n';
-    std::cout << "Nombre: " << nombre << '\n';
-    std::cout << "Encendida: " << (encendida ? "Si" : "No") << '\n';
-    std::cout << "Falla: " << (enFalla ? "Si" : "No") << '\n';
-    std::cout << "Piezas procesadas: " << piezasProcesadas << '\n';
-    std::cout << "Tiempo trabajado: " << tiempoTrabajado << " segundos\n";
-    std::cout << "Paros por mantenimiento: " << paros << '\n';
+    std::cout << "[" << id << "] " << nombre
+              << " | Estado: " << (encendida ? "Encendida" : "Apagada")
+              << " | Falla: " << (enFalla ? "SI" : "NO")
+              << " | Piezas: " << piezasProcesadas
+              << " | Tiempo: " << tiempoTrabajado << "s"
+              << " | Paros: " << paros << std::endl;
 }
