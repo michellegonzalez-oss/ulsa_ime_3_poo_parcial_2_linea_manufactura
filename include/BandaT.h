@@ -1,22 +1,36 @@
-#ifndef BANDATRANSPORTADORA_H
-#define BANDATRANSPORTADORA_H
+#ifndef BANDAT_H
+#define BANDAT_H
 
-#include "Maquina.h"
+#include <string>
+
 #include "Motor.h"
-#include "Componente.h"
+#include "Maquina.h"
 
-class BandaTransportadora : public Maquina {
+// Banda transportadora: traslada la pieza a la siguiente estacion.
+//  - Herencia: BandaT ES una Maquina.
+//  - Composicion: BandaT TIENE un componente Motor (lo crea y lo destruye ella).
+class BandaT : public Maquina {
 private:
+    int segundosPorPieza;   // tiempo por pieza (> 0)
+    int velocidadMmS;   // velocidad de la banda (> 0)
     Motor motor;
-    float velocidad;
 
 public:
-    BandaTransportadora(int id, const std::string& nombre);
+    BandaT(int id, const std::string& nombre, int segundos, int valor2, int vidaMotor);
 
-    void encender();  // redefinimos comportamiento
-    void apagar();
+    // Validan antes de asignar; si el valor no es valido, no lo cambian.
+    void setSegundosPorPieza(int segundos);
+    void setVelocidadMmS(int valor);
 
-    void moverComponente(Componente& c);
+    // Procesa UNA pieza. Devuelve false si la rechaza (apagada o en falla).
+    // Si esta pieza agota el componente, la maquina entra en falla.
+    bool procesarPieza();
+
+    // Restaura el componente, quita la falla y cuenta un paro.
+    void darMantenimiento();
+
+    // Redefine el de Maquina: reutiliza la version base y agrega lo suyo.
+    void mostrarEstado() const;
 };
 
 #endif
