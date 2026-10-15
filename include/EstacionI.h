@@ -1,30 +1,25 @@
-#pragma once
+#ifndef ESTACIONINSPECCION_H
+#define ESTACIONINSPECCION_H
 
-#include <string>
-#include "Componente.h"
+#include "Maquina.h"
+#include "SensorCalibracion.h"
 
-class EstacionInspeccion
-{
+class EstacionInspeccion : public Maquina {
 private:
-    bool encendida;
-
-    double valorNominal;
-    double tolerancia;
-    double offset;
-
-    int piezasOK;
-    int piezasNOK;
+    SensorCalibracion sensor;   // Composición
+    double toleranciaAceptable; // Atributo propio 1 (en mm, ej. 0.05 mm)
+    int tiempoPorPieza;         // Atributo propio 2 (en segundos)
 
 public:
+    EstacionInspeccion(int id, const std::string& nombre, int limiteLecturas, double tolerancia, int tiempoPorPieza);
 
-    EstacionInspeccion(double nominal, double tolerancia);
+    // Métodos propios
+    bool inspeccionarDimensiones();
+    void recalibrarSensor();
+    double getToleranciaAceptable() const;
 
-    void encender();
-    void apagar();
-
-    void calibrar(double referencia);
-
-    bool inspeccionar(Componente& componente, double medida);
-
-    void mostrarReporte() const;
+    // Redefinición de método virtual de la base
+    void mostrarEstado() const override;
 };
+
+#endif

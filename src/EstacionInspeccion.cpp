@@ -1,76 +1,44 @@
 #include "EstacionInspeccion.h"
-#include "Componente.h"
 #include <iostream>
 
-EstacionInspeccion::EstacionInspeccion(double nominal, double tolerancia)
-{
-    this->valorNominal = nominal;
-    this->tolerancia = tolerancia;
+EstacionInspeccion::EstacionInspeccion(int id, const std::string& nombre, int limiteLecturas, double tolerancia, int tiempoPorPieza)
+    : Maquina(id, nombre), sensor(limiteLecturas),
+      toleranciaAceptable(tolerancia > 0.0 ? tolerancia : 0.05),
+      tiempoPorPieza(tiempoPorPieza > 0 ? tiempoPorPieza : 10) {}
 
-    offset = 0.0;
-    encendida = false;
-
-    piezasOK = 0;
-    piezasNOK = 0;
-}
-
-void EstacionInspeccion::encender()
-{
-    encendida = true;
-}
-
-void EstacionInspeccion::apagar()
-{
-    encendida = false;
-}
-
-void EstacionInspeccion::calibrar(double referencia)
-{
-    offset = valorNominal - referencia;
-}
-
-bool EstacionInspeccion::inspeccionar(
-    Componente& componente,
-    double medida)
-{
-    if (!encendida)
-    {
-        std::cout << "La estacion esta apagada.\n";
+bool EstacionInspeccion::inspeccionarDimensiones() {
+    if (!puedeProcesar()) {
+        std::cout << "[ERROR] " << getNombre() << ": No se puede inspeccionar la pieza. Estación apagada o en falla." << std::endl;
         return false;
     }
 
-    medida += offset;
+    // Registra la pieza y acumula el tiempo de medición
+    registrarPieza();
+    agregarTiempo(tiempoPorPieza);
 
-    bool aprobado =
-        medida >= (valorNominal - tolerancia) &&
-        medida <= (valorNominal + tolerancia);
-
-    componente.setInspeccionado(true);
-    componente.setAprobado(aprobado);
-
-    if (aprobado)
-    {
-        piezasOK++;
-
-        std::cout << "Componente " << componente.getId() << " -> APROBADO\n";
-    }
-    else
-    {
-        piezasNOK++;
-
-        std::cout << "Componente " << componente.getId() << " -> RECHAZADO\n";
+    // Modela el desgaste del sensor de precisión
+    if (sensor.desgastar()) {
+        reportarFalla();
+        std::cout << "[ALERTA] " << getNombre() << ": Sensor descalibrado tras alcanzar el límite de inspecciones. Falla reportada." << std::endl;
     }
 
-    return aprobado;
+    return true;
 }
 
-void EstacionInspeccion::mostrarReporte() const
-{
-    std::cout << "\n===== REPORTE =====\n";
+void EstacionInspeccion::recalibrarSensor() {
+    sensor.recalibrar();
+    registrarMantenimiento();
+    std::cout << "[MANTENIMIENTO] " << getNombre() << ": Sensor recalibrado exitosamente. Falla despejada." << std::endl;
+}
 
-    std::cout << "Piezas OK: " << piezasOK << "\n";
+double EstacionInspeccion::getToleranciaAceptable() const {
+    return toleranciaAceptable;
+}
 
-    std::cout << "Piezas NOK: " << piezasNOK << "\n";
-
-    std::cout << "Total inspeccionadas: " << piezasOK + piezasNOK << "\n";
+void EstacionInspeccion::mostrarEstado() const {
+    // Reutilización explícita del método de la clase base
+    Maquina::mostrarEstado();
+    
+    // Extensión con datos específicos de la Estación de Inspección y su componente
+    std::cout << "  └─ [Estación Inspección] Tolerancia: ±" << toleranciaAceptable << " mm | Sensor: " << sensor.getLecturasRestantes() << "/" << sensor.getLecturasMaximas() << " lecturas rest." << " (Precisión: ±" << sensor.getPrecision() << " mm)" << std::endl;
 }
