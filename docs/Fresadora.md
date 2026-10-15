@@ -1,16 +1,19 @@
-**Elaborada por:** Michelle González Barrera
-**Matrícula:** 25069
-**Bloque:** [Inserta aquí tu número de bloque]
+# Documentación de la clase: Fresadora
+
+> Copia este archivo como `docs/<Clase>.md` (por ejemplo, con el nombre de tu máquina) y llena tu copia. No modifiques la plantilla.
+
+**Elaborada por:** Fernando Caleb Román Zamarripa
+**Matrícula:** [Inserta aquí tu matrícula]
+**Bloque:** 2
 
 ## 1. Propósito
 
 **¿Qué máquina representa tu clase y qué operación hace sobre la pieza?**
 
-Mi máquina representa la estación de inspección, la cual realiza un análisis sobre las piezas que pasan en ella utilizando operaciones como calibrar la pieza e inspeccionarla, para que cumpla con los requisitos que se piden.
-
+La clase fresadora  representa una maquina usada en la industria   que realiza ranuras en una pieza  mediante la herramienta de corte la cual es un componente , en cada pieza se requiere un tiempo  una profundidad usada 5mm , con verficadores de encendido  y sin fallas  para aceptar una pieza
 **¿Cuál es su componente y por qué no existe sin la máquina?**
 
-Su componente es un sensor y no puede funcionar sin la máquina porque es la que contiene toda la información de cada pieza que pasa por esta máquina (EstacionInspeccion), sin esta información no se podría hacer ninguna operación bajo los métodos que se implementan.
+El componente quue fue usado para el funcionamiento de fresadora  fue la clase herramienta corte , la herramienta  usada para generar el corte , existe una relacion de ccomposicion por que  la fresadora  contiene y trabaja con su herramienta  , la cual es utilizada para generar la operacion de generar corte  
 
 ## 2. Decisiones de diseño
 

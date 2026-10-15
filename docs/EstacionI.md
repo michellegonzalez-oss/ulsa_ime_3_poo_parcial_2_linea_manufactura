@@ -1,34 +1,32 @@
-# Documentación de la clase: [Inserta aquí el nombre de tu clase]
+# Documentación de la clase: EstacionI
 
-> Copia este archivo como `docs/<Clase>.md` (por ejemplo, con el nombre de tu máquina) y llena tu copia. No modifiques la plantilla.
-
-**Elaborada por:** [Inserta aquí tu nombre]
-**Matrícula:** [Inserta aquí tu matrícula]
+**Elaborada por:** Michelle González Barrera
+**Matrícula:** 25069
 **Bloque:** [Inserta aquí tu número de bloque]
 
 ## 1. Propósito
 
 **¿Qué máquina representa tu clase y qué operación hace sobre la pieza?**
 
-[Inserta aquí tu respuesta]
+Mi máquina representa la estación de inspección, la cual realiza un análisis sobre las piezas que pasan en ella utilizando operaciones como calibrar la pieza e inspeccionarla, para que cumpla con los requisitos que se piden.
 
 **¿Cuál es su componente y por qué no existe sin la máquina?**
 
-[Inserta aquí tu respuesta]
+Su componente es un sensor de calibración y no puede funcionar sin la máquina porque es la que contiene toda la información de cada pieza que pasa por esta máquina (EstacionI), sin esta información no se podría hacer ninguna operación bajo los métodos que se implementan.
 
 ## 2. Decisiones de diseño
 
 **Atributos propios de tu clase y validación de cada uno:**
 
-[Inserta aquí tu respuesta]
+toleranciaMicras, segundosPorPieza y sensor
 
 **Métodos propios (los que la clase base no tiene):**
 
-[Inserta aquí tu respuesta]
+procesarPieza() y darMantenimiento().
 
 **Método de la base que redefines, y cómo reutilizas la versión de la base:**
 
-[Inserta aquí tu respuesta]
+mostrarEstado
 
 **¿Cómo modelaste el desgaste del componente y por qué así?**
 

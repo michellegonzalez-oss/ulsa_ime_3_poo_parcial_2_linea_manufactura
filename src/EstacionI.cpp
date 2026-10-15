@@ -15,8 +15,7 @@ void EstacionI::setSegundosPorPieza(int segundos) {
     if (segundos > 0) {
         segundosPorPieza = segundos;
     } else {
-        std::cout << "  [" << getNombre() << "] Segundos por pieza no valido: "
-                  << segundos << "\n";
+        std::cout << "  [" << getNombre() << "] Segundos por pieza no valido: " << segundos << "\n";
     }
 }
 
@@ -24,8 +23,7 @@ void EstacionI::setToleranciaMicras(int valor) {
     if (valor > 0) {
         toleranciaMicras = valor;
     } else {
-        std::cout << "  [" << getNombre() << "] Tolerancia de la medicion no valida: "
-                  << valor << "\n";
+        std::cout << "  [" << getNombre() << "] Tolerancia de la medicion no valida: " << valor << "\n";
     }
 }
 
