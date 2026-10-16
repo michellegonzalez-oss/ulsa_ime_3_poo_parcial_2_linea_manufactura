@@ -9,19 +9,22 @@
 ## 1. Impacto
 
 **¿Es una mejora o una corrección?**
-[Es una mejora: la planta hoy no hace algo que sí podría hacer, que es recordar qué pasó durante el turno]
+[Es una mejora. Actualmente la planta cumple con procesar la producción, pero carece de un historial o memoria de lo que ocurre paso a paso durante el turno.]
 
 **¿Qué observaste en la solución del equipo que dio origen a la propuesta?**
 
-[El reporte del turno solo entrega totales por máquina. No dice en qué pieza falló cada una ni cuándo se le dio mantenimiento. Eso solo sale como mensajes en la consola durante la corrida y después se pierde, porque la Planta no guarda nada de lo que ocurrió.
+[Al revisar el reporte final que genera el sistema, noté que solo entrega totales acumulados por máquina. No indica en qué pieza ocurrió una falla ni cuándo se le dio mantenimiento. Esos detalles sí suceden durante la corrida, pero se imprimen directo a la consola como mensajes sueltos y se pierden, ya que la clase Planta no guarda un historial.
 
-El caso más claro es la banda transportadora. En nuestra solución la banda traslada la pieza entre cada estación (3 traslados por pieza), así que una sola pieza genera 7 operaciones y todo el lote deja más de 150 líneas en pantalla. El reporte solo dice "Banda transportadora: 60 piezas, 1 paro". No dice que la banda falló en el traslado 50, a la mitad de la pieza 17 (entre la fresadora y el robot), ni cuándo se reparó. Para comprobar nuestro cálculo a mano hay que buscar esas líneas a ojo entre toda la salida.]
+El caso más crítico es el de la banda transportadora: en nuestra solución traslada la pieza entre cada estación (3 traslados por pieza). Para un lote de 20 piezas se generan más de 150 líneas de salida en la consola. Al final, el reporte se limita a mostrar algo como "Banda transportadora: 60 piezas, 1 paro", sin aclarar que la falla ocurrió en el traslado 50 (a mitad de la pieza 17, entre la fresadora y el robot). Si queremos comprobar nuestros cálculos manuales, nos toca revisar línea por línea a ojo entre todo el texto de la pantalla.]
 
 **¿Qué mejora o qué corrige, y por qué vale la pena?**
 
-[La planta llevaría una bitácora del turno: una lista de textos, uno por evento, que se imprime al final del reporte. Con nuestros números quedaría así:
+[La propuesta es dotar a la planta de una bitácora de turno: un registro cronológico de eventos de falla y mantenimiento que se imprime estructurado al final del reporte.
 
-=== Bitacora del turno ===
+Ejemplo de cómo se visualizaría la salida:
+
+Plaintext
+=== Bitácora del turno ===
 Pieza 9: falla Torno CNC
 Pieza 10: mantenimiento Torno CNC
 Pieza 15: falla Robot soldador
@@ -31,31 +34,37 @@ Pieza 17: mantenimiento Banda transportadora
 Pieza 18: falla Torno CNC
 Pieza 19: mantenimiento Torno CNC
 
-Vale la pena porque:
+Vale la pena por tres razones:
 
-el cálculo a mano se compara directamente con la bitácora (fallas del torno después de las piezas 9 y 18, del robot en la 15 y de la banda en la 17), no solo con los totales;
-el reporte explica por qué hubo 4 paros y no solo cuántos;
-aclara el caso de la banda, donde "60 piezas" son en realidad 60 traslados de 20 piezas.]
+Validación rápida: Permite comparar los cálculos hechos a mano directamente contra la lista de eventos, en lugar de rastrearlos entre cientos de líneas de consola.
+
+Contexto completo: Explicita el porqué y el cuándo de los paros, no solo el conteo total.
+
+Claridad operacional: Despeja dudas en casos como el de la banda transportadora, donde los "60 eventos" representan en realidad 60 traslados individuales de las 20 piezas del lote.]
 
 ## 2. Qué implica
 
 **Clases nuevas:**
 
-[Bitacora, con un arreglo de textos (eventos, capacidad 100) y un contador (cantidad). Métodos: registrar(texto), que agrega un evento (si se llena, avisa y no agrega), y mostrar().]
+Bitacora: Manejará un arreglo de cadenas (string eventos[100]) para almacenar los mensajes y un entero cantidad como contador. Incluirá los métodos registrar(string texto) (valida espacio antes de insertar) y mostrar() (imprime el historial ordenado). 
 
 **Comportamiento nuevo en clases existentes:**
 
-[Planta tiene un atributo bitacora. En procesarPieza(), cada vez que detecta una máquina en falla anota el evento de falla y el de mantenimiento, con el número de pieza (piezasTerminadas + 1). Se agrega mostrarBitacora(), que generarReporte() puede llamar al final. Maquina y todas las derivadas no cambia]
+Planta: Tendrá un atributo de tipo Bitacora. Dentro de procesarPieza(), cada vez que identifique un fallo o mantenimiento en una máquina, registrará el evento indicando el número de pieza actual (piezasTerminadas + 1). Se agregará el método mostrarBitacora(), llamado al cierre de generarReporte().
+
+Maquina y subclases: Permanecen sin cambios.
 
 **Interacciones nuevas entre objetos:**
 
-[Planta → Bitacora: la planta llama a bitacora.registrar(...) cada vez que ocurre un evento. La planta ya conoce el nombre de la máquina con getNombre() y lo escribe dentro del texto.]
+Planta → Bitacora: La planta llamará a bitacora.registrar(...) cada vez que ocurra una incidencia. La planta obtendrá el nombre del equipo involucrado mediante getNombre() para armar la descripción del evento.
 
 **Relaciones nuevas (herencia, composición o agregación) y por qué son de ese tipo:**
 
-[Planta ◆— Bitacora: composición. La bitácora es del turno de esa planta: se crea con ella y desaparece con ella. No es agregación porque la planta no la recibe de afuera como las máquinas (que se crean en main); es su dueña.
-No hay herencia nueva: Bitacora no es un tipo especial de ninguna clase existente.
-No hay relación nueva con las máquinas: la bitácora solo guarda texto, no apuntadores a máquinas. La agregación de Planta con las máquinas queda igual.]
+Composición (Planta ◆— Bitacora): La bitácora le pertenece únicamente al turno de la planta: se crea con ella y se destruye con ella. No es agregación porque no se recibe desde main como las máquinas, sino que la planta es su propietaria exclusiva.
+
+Sin herencia nueva: Bitacora es una clase concreta independiente.
+
+Sin cambios con respecto a las máquinas: La bitácora solo guarda texto, no punteros a los objetos de tipo Maquina. La agregación previa entre Planta y Maquina se conserva intacta.
 
 ## 3. Diagrama de clases
 
