@@ -18,7 +18,7 @@ La guía completa del proyecto está en [PROYECTO.md](PROYECTO.md). Léanla ante
 
 Escriban el orden en que una pieza recorre las estaciones.
 
-Torno CNC → Fresadora  → Robot Soldador → Banda Transportadora → Estación de Inspección
+Torno CNC → Banda Transportadora → Fresadora → Banda Transportadora → Robot Soldador → Banda Transportadora → Estación de Inspección
 
 ## 3. Cómo compilar y ejecutar
 
@@ -52,7 +52,7 @@ Lote de 20 piezas. Una fila por máquina.
 
 **Reporte esperado (piezas terminadas, tiempo total y paros):**
 
-En el reporte se espera observar 20 piezas terminadas, en un tiempo total de 2340 segundos y con un total de 3 paros (2 de Torno CNC y 1 de Robot Soldador).
+En el reporte se espera observar 20 piezas terminadas, en un tiempo total de 2540 segundos y con un total de 5 paros (2 de Torno CNC, 1 de Fresadora, 1 de Robot Soldador y 1 de Banda Transportadora).
 
 **¿Coincide con lo que imprime el programa? Si no coincidió al primer intento, ¿qué encontraron?**
 
