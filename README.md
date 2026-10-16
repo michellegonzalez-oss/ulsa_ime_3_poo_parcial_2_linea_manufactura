@@ -18,7 +18,7 @@ La guía completa del proyecto está en [PROYECTO.md](PROYECTO.md). Léanla ante
 
 Escriban el orden en que una pieza recorre las estaciones.
 
-Torno CNC → Fresadora  → Robot Soldador → Banda Transportadora → Estación de Inspección
+Torno CNC → Banda Transportadora → Fresadora → Banda Transportadora → Robot Soldador → Banda Transportadora → Estación de Inspección
 
 ## 3. Cómo compilar y ejecutar
 
