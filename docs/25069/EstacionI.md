@@ -40,7 +40,7 @@ Agrega los parámetros operativos específicos de inspección (segundosPorPieza,
 
 Diagrama de tu clase y su componente, hecho en draw.io. Debe mostrar la relación de herencia con `Maquina` y la de composición con tu componente. Guarda la imagen en `docs/` y enlázala aquí.
 
-[Inserta aquí tu diagrama]
+<img src="Diagrama_EstacionI.drawio.png">
 
 ## 4. Bitácora
 
@@ -51,4 +51,4 @@ No quedaba claro cómo evitar duplicar código al mostrar el estado de la máqui
 
 **Errores que encontraste y cómo los corregiste:**
 
-[Inserta aquí tu respuesta]
+Al modificar atributos con valores menores o iguales a cero, el estado interno se corrompía. Se corrigió agregando condicionales de validación (if (segundos > 0)) dentro de las funciones setter para ignorar las asignaciones no válidas.
