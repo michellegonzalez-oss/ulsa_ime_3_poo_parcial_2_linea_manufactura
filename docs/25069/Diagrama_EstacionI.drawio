@@ -1,0 +1,41 @@
+<mxfile host="app.diagrams.net" agent="ChatGPT">
+  <diagram id="uml-estacioni" name="Diagrama UML">
+    <mxGraphModel dx="1284" dy="643" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="maquina" parent="1" style="swimlane;html=1;startSize=30;horizontal=1;rounded=0;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;" value="Maquina" vertex="1">
+          <mxGeometry height="38" width="350" x="430" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="maquinaBody" parent="1" style="text;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;whiteSpace=wrap;overflow=hidden;fillColor=#ffffff;strokeColor=#6c8ebf;" value="- id : int&lt;br&gt;- nombre : std::string&lt;br&gt;- encendida : bool&lt;br&gt;- enFalla : bool&lt;br&gt;- piezasProcesadas : int&lt;br&gt;- tiempoTrabajado : int&lt;br&gt;- paros : int&lt;br&gt;&lt;br&gt;+ Maquina(id : int, nombre : const std::string&amp;amp;)&lt;br&gt;+ encender() : void&lt;br&gt;+ apagar() : void&lt;br&gt;+ estaEncendida() const : bool&lt;br&gt;+ estaEnFalla() const : bool&lt;br&gt;+ puedeProcesar() const : bool&lt;br&gt;+ getId() const : int&lt;br&gt;+ getNombre() const : std::string&lt;br&gt;+ getPiezasProcesadas() const : int&lt;br&gt;+ getTiempoTrabajado() const : int&lt;br&gt;+ getParos() const : int&lt;br&gt;+ mostrarEstado() const : void" vertex="1">
+          <mxGeometry height="307" width="350" x="430" y="83" as="geometry" />
+        </mxCell>
+        <mxCell id="estacion" parent="1" style="swimlane;html=1;startSize=30;horizontal=1;rounded=0;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;" value="EstacionI" vertex="1">
+          <mxGeometry height="38" width="370" x="40" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="estacionBody" parent="1" style="text;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;whiteSpace=wrap;overflow=hidden;fillColor=#ffffff;strokeColor=#6c8ebf;" value="- segundosPorPieza : int&lt;br&gt;- toleranciaMicras : int&lt;br&gt;- sensor : Sensor&lt;br&gt;&lt;br&gt;+ EstacionI(id : int, nombre : const std::string&amp;amp;, segundos : int, valor2 : int, medicionesSensor : int)&lt;br&gt;+ setSegundosPorPieza(segundos : int) : void&lt;br&gt;+ setToleranciaMicras(valor : int) : void&lt;br&gt;+ procesarPieza() : bool&lt;br&gt;+ darMantenimiento() : void&lt;br&gt;+ mostrarEstado() const : void" vertex="1">
+          <mxGeometry height="175.5" width="370" x="40" y="470" as="geometry" />
+        </mxCell>
+        <mxCell id="sensor" parent="1" style="swimlane;html=1;startSize=30;horizontal=1;rounded=0;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;" value="Sensor" vertex="1">
+          <mxGeometry height="38" width="310" x="650" y="526.5" as="geometry" />
+        </mxCell>
+        <mxCell id="sensorBody" parent="1" style="text;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;whiteSpace=wrap;overflow=hidden;fillColor=#ffffff;strokeColor=#82b366;" value="- vidaUtil : int&lt;br&gt;- usos : int&lt;br&gt;&lt;br&gt;+ Sensor(vida : int)&lt;br&gt;+ medir() : void&lt;br&gt;+ perdioCalibracion() const : bool&lt;br&gt;+ calibrar() : void&lt;br&gt;+ mostrar() const : void" vertex="1">
+          <mxGeometry height="135" width="310" x="650" y="578" as="geometry" />
+        </mxCell>
+        <mxCell id="inheritance" edge="1" parent="1" source="estacion" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;strokeWidth=2;" target="maquina" value="herencia">
+          <mxGeometry relative="1" x="-0.2101" as="geometry">
+            <mxPoint x="1" as="offset" />
+            <Array as="points">
+              <mxPoint x="230" y="64" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="composition" edge="1" parent="1" source="estacion" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=diamond;startFill=1;endArrow=none;strokeWidth=2;" target="sensor" value="composición · 1">
+          <mxGeometry relative="1" x="0.3115" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
