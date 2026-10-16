@@ -3,7 +3,7 @@
 
 #include <string>
 
-#include "Husillo.h"
+#include "husillo.h"
 #include "Maquina.h"
 
 // Torno CNC: cilindra la pieza.
