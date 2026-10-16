@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-Sensor::Sensor(int vida) : vidaUtil(13), usos(0) {
+Sensor::Sensor(int vida) : vidaUtil(30), usos(0) {
     if (vida > 0) {
         vidaUtil = vida;
     } else {
