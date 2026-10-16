@@ -56,7 +56,7 @@ En el reporte se espera observar 20 piezas terminadas, en un tiempo total de 234
 
 **¿Coincide con lo que imprime el programa? Si no coincidió al primer intento, ¿qué encontraron?**
 
-Sí coincide con el programa, aunque no en el primer intento, se tuvo que corregir n veces el código (cada clase, modificamos a un solo componente, volvimos a modificar a componentes específicos de cada máquina y verificar que todas las máquinas se pudieran interlazar y trabajar juntas por medio de planta.cpp y main.cpp) para que finalmente compilara en general, y al logra compilarlo el resultado coincidió con nuestras expectativas.
+Sí coincide con el programa, aunque no en el primer intento, se tuvo que corregir n veces el código (cada clase, modificamos a un solo componente, volvimos a modificar a componentes específicos de cada máquina y verificar que todas las máquinas se pudieran interlazar y trabajar juntas por medio de planta.cpp y main.cpp) para que finalmente compilara en general, y al lograr compilarlo el resultado coincidió con nuestras expectativas.
 
 ## 6. Diagrama general
 
