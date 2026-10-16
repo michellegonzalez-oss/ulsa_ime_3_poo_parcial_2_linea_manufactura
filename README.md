@@ -69,7 +69,7 @@ Diagrama de clases de la solución completa, hecho en draw.io. Guarden la imagen
 
 | Integrante | Documentación de su clase | Propuesta de mejora |
 | --- | --- | --- |
-|brayan lopez | `docs/25160/RobotSoldador+.md` | `docs/mejoras/<matrícula>/mejora.md` |
+|brayan lopez | `docs/25160/RobotSoldador+.md` | `docs/mejoras/<25160>/mejora brayan.md` |
 |Michelle González Barrera |`docs/25069/EstacionI.md`| |
 |Fernando caleb |docs/25436/Fresadora.md |docs/25436/Fresadora mejora.md |
 | | | |
@@ -79,4 +79,4 @@ Diagrama de clases de la solución completa, hecho en draw.io. Guarden la imagen
 
 Si el equipo modificó la interfaz de la clase base, expliquen qué cambió y por qué. Si no hubo cambios, escriban "Sin cambios".
 
-[Inserta aquí tu respuesta]
+"Sin cambios
