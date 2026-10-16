@@ -62,7 +62,8 @@ Sí coincide con el programa, aunque no en el primer intento, se tuvo que correg
 
 Diagrama de clases de la solución completa, hecho en draw.io. Guarden la imagen como `docs/diagrama_general.png`.
 
-![Diagrama general](docs/diagrama_general.png)
+![Diagrama general](docs/Diagrama G.drawio.png)
+<img src="./Diagrama G.png">
 
 ## 7. Documentación individual
 
