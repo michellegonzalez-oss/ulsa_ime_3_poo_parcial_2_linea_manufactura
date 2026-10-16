@@ -54,9 +54,7 @@ int main() {
 
     std::cout << "\n=== Estado final de cada maquina ===\n";
     torno.mostrarEstado();
-    banda.mostrarEstado();
     fresadora.mostrarEstado();
-    banda.mostrarEstado();
     robot.mostrarEstado();
     banda.mostrarEstado();
     inspeccion.mostrarEstado();
