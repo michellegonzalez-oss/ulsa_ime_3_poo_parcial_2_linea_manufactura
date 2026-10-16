@@ -44,11 +44,11 @@ Lote de 20 piezas. Una fila por máquina.
 
 | Máquina | Segundos por pieza | Límite del componente | Fallas en 20 piezas | Tiempo trabajado |
 | --- | --- | --- | --- | --- |
-Banda transportadora 5 s | | | 300 s
-Estación de inspección 12 s | | | 240 s
-Fresadora 45 s | | | 900 s
-Robot soldador 25 s | | | 500 s
-Torno CNC 30 s | | | 600 s
+Banda transportadora |5 s | 50| 1| 300 s
+Estación de inspección |12 s | 30| 0| 240 s
+Fresadora |45 s | 20| 1| 900 s
+Robot soldador |25 s | 15| 1| 500 s
+Torno CNC |30 s | 10| 2| 600 s
 
 **Reporte esperado (piezas terminadas, tiempo total y paros):**
 
