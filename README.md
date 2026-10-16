@@ -71,7 +71,7 @@ Diagrama de clases de la solución completa, hecho en draw.io. Guarden la imagen
 | --- | --- | --- |
 |brayan lopez | `docs/25160/RobotSoldador+.md` | `docs/mejoras/<matrícula>/mejora.md` |
 |Michelle González Barrera |`docs/25069/EstacionI.md`| |
-|Fernando caleb |docs/25436/Fresadora.md | |
+|Fernando caleb |docs/25436/Fresadora.md |docs/25436/Fresadora mejora.md |
 | | | |
 | | | |
 
