@@ -8,11 +8,11 @@
 
 **¿Qué máquina representa tu clase y qué operación hace sobre la pieza?**
 
-Mi máquina representa la estación de inspección, la cual realiza un análisis sobre las piezas que pasan en ella utilizando operaciones como calibrar la pieza e inspeccionarla, para que cumpla con los requisitos que se piden.
+Mi máquina representa la estación de inspección,su funcion es medir y verificar la calidad o especificaciones de una pieza dentro de un proceso de producción mediante el método procesarPieza().
 
 **¿Cuál es su componente y por qué no existe sin la máquina?**
 
-Su componente es un sensor de calibración y no puede funcionar sin la máquina porque es la que contiene toda la información de cada pieza que pasa por esta máquina (EstacionI), sin esta información no se podría hacer ninguna operación bajo los métodos que se implementan.
+Su componente es un sensor de calibración y no puede funcionar sin la máquina porque la relación entre ambos es de composición: la propia EstacionI crea y destruye la instancia del Sensor como miembro privado de su estructura.Sin la máquina que lo aloje, controle sus mediciones y gestione su consumo, el sensor carece de contexto operativo y ciclo de vida.
 
 ## 2. Decisiones de diseño
 
@@ -22,19 +22,19 @@ toleranciaMicras, segundosPorPieza y sensor
 
 **Métodos propios (los que la clase base no tiene):**
 
-procesarPieza() y darMantenimiento().
+procesarPieza(), setToleranciaMicras() y setSegundosPorPieza().
 
 **Método de la base que redefines, y cómo reutilizas la versión de la base:**
 
-mostrarEstado
-
+Redefino mostrarEstado(). Se reutiliza llamando a Maquina::mostrarEstado() dentro de su implementación para imprimir la información general de la máquina (como ID, nombre o fallas) y, luego, agregar los datos específicos de la estación (segundosPorPieza, toleranciaMicras) y el estado interno del sensor.
 **¿Cómo modelaste el desgaste del componente y por qué así?**
 
-[Inserta aquí tu respuesta]
+El desgaste del componente se modeló de forma discreta a través de la cantidad de mediciones que el Sensor puede realizar. Cada vez que se ejecuta procesarPieza(), el sensor decrementa sus mediciones disponibles. Cuando la pieza actual agota las mediciones del sensor, la máquina entra automáticamente en estado de falla. Se modeló así para simular la descalibración o desgate físico real de un instrumento de precisión por uso acumulado.
 
 **¿Qué usa tu clase de `Maquina` y qué agrega?**
 
-[Inserta aquí tu respuesta]
+Usa de Maquina los atributos y métodos heredados para el control general de la máquina (identificador id, nombre, estado de encendido/apagado, detección de fallas y la lógica general de mantenimiento con darMantenimiento()).
+Agrega los parámetros operativos específicos de inspección (segundosPorPieza, toleranciaMicras), la integración del componente de medición Sensor vía composición, y la lógica de validación de piezas.
 
 ## 3. Diagrama
 
@@ -46,7 +46,8 @@ Diagrama de tu clase y su componente, hecho en draw.io. Debe mostrar la relació
 
 **Dudas que tuviste y cómo las resolviste:**
 
-[Inserta aquí tu respuesta]
+Existía la duda de si el Sensor debía pasarse como un puntero o instanciarse como un atributo directo. Se resolvió instanciándolo como miembro directo de EstacionI para garantizar una relación de composición estricta donde la máquina es la única responsable de crear y destruir el sensor.
+No quedaba claro cómo evitar duplicar código al mostrar el estado de la máquina. Se resolvió invocando explícitamente el método de la clase base Maquina::mostrarEstado() antes de desplegar los datos propios de la estación de inspección.
 
 **Errores que encontraste y cómo los corregiste:**
 
