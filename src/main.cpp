@@ -26,7 +26,7 @@ int main() {
     Fresadora fresadora(2, "Fresadora", 45, 5, 25);
     RobotSoldador robot(3, "Robot soldador", 25, 200, 15);
     BandaT banda(4, "Banda transportadora", 5, 200, 50);
-    EstacionI inspeccion(5, "Estacion de inspeccion", 12, 50, 13);
+    EstacionI inspeccion(5, "Estacion de inspeccion", 12, 50, 30);
 
     Planta planta;
     planta.registrarTorno(&torno);
