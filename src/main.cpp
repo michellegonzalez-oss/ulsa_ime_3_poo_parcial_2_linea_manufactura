@@ -30,7 +30,6 @@ int main() {
 
     Planta planta;
     planta.registrarTorno(&torno);
-    planta.registrarBanda(&banda);
     planta.registrarFresadora(&fresadora);
     planta.registrarRobot(&robot);
     planta.registrarBanda(&banda);
@@ -55,7 +54,9 @@ int main() {
 
     std::cout << "\n=== Estado final de cada maquina ===\n";
     torno.mostrarEstado();
+    banda.mostrarEstado();
     fresadora.mostrarEstado();
+    banda.mostrarEstado();
     robot.mostrarEstado();
     banda.mostrarEstado();
     inspeccion.mostrarEstado();
