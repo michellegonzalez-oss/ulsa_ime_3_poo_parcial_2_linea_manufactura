@@ -64,12 +64,30 @@ bool Planta::procesarPieza() {
         return false;
     }
 
+    // Estacion 4: Banda transportadora
+    if (banda->estaEnFalla()) {
+        std::cout << "  >> Linea detenida: " << banda->getNombre() << " en falla\n";
+        banda->darMantenimiento();
+    }
+    if (!banda->procesarPieza()) {
+        return false;
+    }
+
     // Estacion 2: Fresadora
     if (fresadora->estaEnFalla()) {
         std::cout << "  >> Linea detenida: " << fresadora->getNombre() << " en falla\n";
         fresadora->darMantenimiento();
     }
     if (!fresadora->procesarPieza()) {
+        return false;
+    }
+
+    // Estacion 4: Banda transportadora
+    if (banda->estaEnFalla()) {
+        std::cout << "  >> Linea detenida: " << banda->getNombre() << " en falla\n";
+        banda->darMantenimiento();
+    }
+    if (!banda->procesarPieza()) {
         return false;
     }
 

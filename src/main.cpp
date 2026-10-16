@@ -23,7 +23,7 @@ int main() {
     //    Parametros: id, nombre, segundos por pieza, dato propio, limite del
     //    componente (en piezas, o mediciones para el sensor).
     TornoCNC torno(1, "Torno CNC", 30, 1500, 9);
-    Fresadora fresadora(2, "Fresadora", 45, 5, 25);
+    Fresadora fresadora(2, "Fresadora", 45, 5, 15);
     RobotSoldador robot(3, "Robot soldador", 25, 200, 15);
     BandaT banda(4, "Banda transportadora", 5, 200, 50);
     EstacionI inspeccion(5, "Estacion de inspeccion", 12, 50, 30);
