@@ -41,25 +41,24 @@ mostrarEstado(): redefine el método de la clase base para mostrar también la p
 El método mostrarEstado() de la clase Maquina. Dentro de su implementación llamo a Maquina::mostrarEstado(), que muestra la información general de la máquina. Después agrego los datos particulares de la fresadora y llamo a herramienta.mostrar() para mostrar la información de su componente
 
 **¿Cómo modelaste el desgaste del componente y por qué así?**
-
-[Inserta aquí tu respuesta]
+El desgaste se verifica en  la clase de herramienta de corte  y cada vez que se procesa una pieza  correctamente se desgasta  se llama al metodo herramienta desgastar  que va restandole vida util , al  reportar una falla  se dejan de procesar  piezas y  se le da mantenimiento,  dar mantenimiento ()  llamar  herramienta.afilar () y se reinicia la vida util.
 
 **¿Qué usa tu clase de `Maquina` y qué agrega?**
 
-[Inserta aquí tu respuesta]
+La clase Fresadora hereda de Maquina mediante public Maquina. Reutiliza sus funciones generales para verificar si puede procesar, consultar si está encendida, registrar piezas, acumular tiempo de operación, reportar fallas y registrar mantenimientos. 
 
 ## 3. Diagrama
 
 Diagrama de tu clase y su componente, hecho en draw.io. Debe mostrar la relación de herencia con `Maquina` y la de composición con tu componente. Guarda la imagen en `docs/` y enlázala aquí.
 
-[Inserta aquí tu diagrama]
+![alt text](<diagrama fresadora.drawio-1.png>)
 
 ## 4. Bitácora
 
 **Dudas que tuviste y cómo las resolviste:**
+Una de mis dudas fue cómo representar el desgaste de una herramienta dentro de una máquina. Lo resolví creando un objeto HerramientaCorte como atributo de Fresadora y utilizando sus métodos para desgastarla, consultar su estado y restaurarla durante el mantenimiento.
 
-[Inserta aquí tu respuesta]
-
+Otra duda fue cómo aprovechar los métodos de la clase base sin repetir el código. Lo resolví mediante la herencia de Maquina y la llamada Maquina::mostrarEstado()
 **Errores que encontraste y cómo los corregiste:**
 
-[Inserta aquí tu respuesta]
+El valo mas comun es aquel el que hacia los  numeros negativos, por lo que puse  validaciones que  no dejan asignar tiempos de procesamiento o profundidades iguales a cero o negativos. Cuando se introduce un valor inválido, se muestra un mensaje y se conserva el valor anterior.

@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-HerramientaCorte::HerramientaCorte(int vida) : vidaUtil(20), usos(0) {
+HerramientaCorte::HerramientaCorte(int vida) : vidaUtil(15), usos(0) {
     if (vida > 0) {
         vidaUtil = vida;
     } else {

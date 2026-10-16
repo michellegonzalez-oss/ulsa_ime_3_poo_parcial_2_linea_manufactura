@@ -10,15 +10,15 @@ La guía completa del proyecto está en [PROYECTO.md](PROYECTO.md). Léanla ante
 | --- | --- | --- | --- | --- | --- |
 | 1 | | | | | |
 | 2 | | | | | |
-| 3 | | | | | |
-| 4 |25160 | brayan lopez| brayanlopez-ux| Robot soldador|Soldar |
+| 3 |25160 | brayan lopez| brayanlopez-ux| Robot soldador|Soldar |
+| 4 | | | |  |
 | 5 |25069 |Michelle González Barrera|michellegonzalez-oss |Estación de Inspección |Sensor |
 
 ## 2. Orden de la línea
 
 Escriban el orden en que una pieza recorre las estaciones.
 
-Torno CNC, Banda Transportadora, Fresadora, Banda Transportadora, Robot Soldador, Banda Transportadora,  Estación de Inspección
+TTorno CNC → Banda Transportadora → Fresadora → Banda Transportadora → Robot Soldador → Banda Transportadora → Estación de Inspección
 
 ## 3. Cómo compilar y ejecutar
 
@@ -30,11 +30,12 @@ Escriban el comando exacto que usa el equipo para compilar y el comando para eje
 
 **¿En qué momento exacto falla una máquina?**
 
-[Inserta aquí tu respuesta]
+Una máquina falla justo después de procesar la pieza que agota su componente, es decir, cuando el desgaste del componente llega a su vida útil. Esa pieza sí se termina de procesar y la falla se reporta al terminar con `reportarFalla()`. A partir de ese momento la máquina rechaza las piezas siguientes (`puedeProcesar()` es falso) hasta que recibe mantenimiento.
 
 **¿El mantenimiento suma tiempo al turno? ¿Cuánto?**
 
-[Inserta aquí tu respuesta]
+No suma tiempo al turno. El mantenimiento restaura el componente, quita la falla y cuenta un paro (`registrarMantenimiento()`).
+
 
 ## 5. Cálculo a mano del reporte
 
@@ -66,7 +67,7 @@ Diagrama de clases de la solución completa, hecho en draw.io. Guarden la imagen
 
 | Integrante | Documentación de su clase | Propuesta de mejora |
 | --- | --- | --- |
-| | `docs/<Clase>.md` | `docs/mejoras/<matrícula>/mejora.md` |
+|brayan lopez | `docs/25160/RobotSoldador+.md` | `docs/mejoras/<matrícula>/mejora.md` |
 | | | |
 | | | |
 | | | |
