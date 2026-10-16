@@ -70,7 +70,7 @@ Diagrama de clases de la solución completa, hecho en draw.io. Guarden la imagen
 | Integrante | Documentación de su clase | Propuesta de mejora |
 | --- | --- | --- |
 |brayan lopez | `docs/25160/RobotSoldador+.md` | `docs/mejoras/<25160>/mejora brayan.md` |
-|Michelle González Barrera |`docs/25069/EstacionI.md`| |
+|Michelle González Barrera |`docs/25069/EstacionI.md`|`docs/25069/mejora.md`|
 |Fernando caleb |docs/25436/Fresadora.md |docs/25436/Fresadora mejora.md |
 | | | |
 | | | |
