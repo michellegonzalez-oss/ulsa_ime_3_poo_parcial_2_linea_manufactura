@@ -6,8 +6,7 @@ Sensor::Sensor(int vida) : vidaUtil(30), usos(0) {
     if (vida > 0) {
         vidaUtil = vida;
     } else {
-        std::cout << "  [Sensor] Vida util no valida (" << vida
-                  << "). Se usan 30.\n";
+        std::cout << "  [Sensor] Vida util no valida (" << vida << "). Se usan 30.\n";
     }
 }
 

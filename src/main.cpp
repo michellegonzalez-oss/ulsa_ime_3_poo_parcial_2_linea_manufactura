@@ -30,6 +30,7 @@ int main() {
 
     Planta planta;
     planta.registrarTorno(&torno);
+    planta.registrarBanda(&banda);
     planta.registrarFresadora(&fresadora);
     planta.registrarRobot(&robot);
     planta.registrarBanda(&banda);
