@@ -9,7 +9,7 @@ La guía completa del proyecto está en [PROYECTO.md](PROYECTO.md). Léanla ante
 | Bloque | Matrícula | Nombre | Usuario de GitHub | Máquina | Componente |
 | --- | --- | --- | --- | --- | --- |
 | 1 | | | | | |
-| 2 | | | | | |
+| 2 | 25436|Fernando caleb  |Fernando1709 | Fresadora|Herramienta de corte |
 | 3 |25160 | brayan lopez| brayanlopez-ux| Robot soldador|Soldar |
 | 4 | | | |  |
 | 5 |25069 |Michelle González Barrera|michellegonzalez-oss |Estación de Inspección |Sensor |
@@ -18,7 +18,7 @@ La guía completa del proyecto está en [PROYECTO.md](PROYECTO.md). Léanla ante
 
 Escriban el orden en que una pieza recorre las estaciones.
 
-Torno CNC → Banda Transportadora → Fresadora → Banda Transportadora → Robot Soldador → Banda Transportadora → Estación de Inspección
+Torno CNC → Fresadora  → Robot Soldador → Banda Transportadora → Estación de Inspección
 
 ## 3. Cómo compilar y ejecutar
 
@@ -70,7 +70,7 @@ Diagrama de clases de la solución completa, hecho en draw.io. Guarden la imagen
 | --- | --- | --- |
 |brayan lopez | `docs/25160/RobotSoldador+.md` | `docs/mejoras/<matrícula>/mejora.md` |
 |Michelle González Barrera |`docs/25069/EstacionI.md`| |
-| | | |
+|Fernando caleb |docs/25436/Fresadora.md | |
 | | | |
 | | | |
 
