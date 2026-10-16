@@ -1,4 +1,4 @@
-#include "../include/TornoCNC.h"
+#include "TornoCNC.h"
 
 #include <iostream>
 
