@@ -18,13 +18,14 @@ La guía completa del proyecto está en [PROYECTO.md](PROYECTO.md). Léanla ante
 
 Escriban el orden en que una pieza recorre las estaciones.
 
-TTorno CNC → Banda Transportadora → Fresadora → Banda Transportadora → Robot Soldador → Banda Transportadora → Estación de Inspección
+Torno CNC → Banda Transportadora → Fresadora → Banda Transportadora → Robot Soldador → Banda Transportadora → Estación de Inspección
 
 ## 3. Cómo compilar y ejecutar
 
 Escriban el comando exacto que usa el equipo para compilar y el comando para ejecutar.
 
-[Inserta aquí tu respuesta]
+Compilar: g++ -Wall -Wextra -std=c++17 -Iinclude src/*.cpp -o planta
+Ejecutar: ./planta
 
 ## 4. Reglas de la simulación
 
@@ -51,11 +52,11 @@ Lote de 20 piezas. Una fila por máquina.
 
 **Reporte esperado (piezas terminadas, tiempo total y paros):**
 
-[Inserta aquí tu respuesta]
+En el reporte se espera observar 20 piezas terminadas, en un tiempo total de 2340 segundos y con un total de 3 paros (2 de Torno CNC y 1 de Robot Soldador).
 
 **¿Coincide con lo que imprime el programa? Si no coincidió al primer intento, ¿qué encontraron?**
 
-[Inserta aquí tu respuesta]
+Sí coincide con el programa, aunque no en el primer intento, se tuvo que corregir n veces el código (cada clase, modificamos a un solo componente, volvimos a modificar a componentes específicos de cada máquina y verificar que todas las máquinas se pudieran interlazar y trabajar juntas por medio de planta.cpp y main.cpp) para que finalmente compilara en general, y al logra compilarlo el resultado coincidió con nuestras expectativas.
 
 ## 6. Diagrama general
 
@@ -68,7 +69,7 @@ Diagrama de clases de la solución completa, hecho en draw.io. Guarden la imagen
 | Integrante | Documentación de su clase | Propuesta de mejora |
 | --- | --- | --- |
 |brayan lopez | `docs/25160/RobotSoldador+.md` | `docs/mejoras/<matrícula>/mejora.md` |
-| | | |
+|Michelle González Barrera |`docs/25069/EstacionI.md`| |
 | | | |
 | | | |
 | | | |
