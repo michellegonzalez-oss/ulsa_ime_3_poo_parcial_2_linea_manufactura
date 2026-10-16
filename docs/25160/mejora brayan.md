@@ -9,7 +9,6 @@
 ## 1. Impacto
 
 **¿Es una mejora o una corrección?**
-
 [Es una mejora: la planta hoy no hace algo que sí podría hacer, que es recordar qué pasó durante el turno]
 
 **¿Qué observaste en la solución del equipo que dio origen a la propuesta?**
@@ -62,4 +61,4 @@ No hay relación nueva con las máquinas: la bitácora solo guarda texto, no apu
 
 Diagrama hecho en draw.io que muestre la solución con la mejora incorporada. Distingue lo nuevo de lo existente, por ejemplo con otro color. Guarda la imagen en esta misma carpeta y enlázala aquí.
 
-[Inserta aquí tu diagrama]
+<img src="./diagrama_mejora.png">
